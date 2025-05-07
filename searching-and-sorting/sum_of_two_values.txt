@@ -1,0 +1,52 @@
+problem link:	https://cses.fi/problemset/task/1640/
+type:		Sorting and Searching
+solution:	the brute force approach is to check for every combination using two loops and then return the indices. But, it's n^2. A better approach is to use dictionary/hash map. Keep the value(vec[i]:i) in map and in each iteration check if (vec[i]-x) exists in map. If so then it means that there is a pair which sum is equal to x. Now, this method works but in worst case the hash map lookup can take O(n). In cpp, map<int, int> guarantee O(logn) lookup using red black binary tree.
+
+python solution: TLE
+-----------------------
+import sys
+
+n, x = map(int, sys.stdin.readline().split())
+arr = list(map(int, sys.stdin.readline().split()))
+index_map = {}
+
+for i in range(n):
+    complement = x - arr[i]
+    if complement in index_map:
+        sys.stdout.write(f"{index_map[complement]+1} {i+1}\n")
+        sys.exit()
+    index_map[arr[i]] = i
+
+sys.stdout.write("IMPOSSIBLE\n")
+-----------------------
+cpp solution: AC
+-----------------------
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl '\n'
+// map is used instead of unordered_map because it guaratees O(logn) lookups
+// using binary red black tree while unordered_map can cause O(n2) in worst
+// case scenario
+int32_t main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, x;
+    cin >> n >> x;
+    vector<int> vec(n);
+    map<int, int> index_map;
+
+    for (int i = 0; i < n; ++i) {
+        cin >> vec[i];
+        if (index_map.count(x - vec[i])) {
+            cout << index_map[x - vec[i]] + 1 << " " << i + 1 << endl;
+            return 0;
+        }
+        index_map[vec[i]] = i;
+    }
+
+    cout << "IMPOSSIBLE" << endl;
+    return 0;
+}
+-----------------------
