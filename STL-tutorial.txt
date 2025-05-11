@@ -49,9 +49,9 @@ for (auto rtr = vec.rbegin(); rtr!=vec.rend(); rtr++){
 
 useful methods:
 1. Initialize with default values?
-vector<int> vec = vec(9, 10);		// gives a vector with 9 size and 10 on each index
+vector<int> vec(9, 10);		// gives a vector with 9 size and 10 on each index
 2. Initialize with another vector values?
-vector<int> vec1 = vec1(vec);
+vector<int> vec1(vec);
 3. namespace?
 using namespace std;
 4. I/O functions header file?
