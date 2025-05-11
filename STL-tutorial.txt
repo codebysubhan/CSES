@@ -132,9 +132,124 @@ q.swap();	swap the values of 2 queues
 priority_queue<int> q; --> maxheap / default
 priority_queue<int, vector<int>, greater<int>> q; --> minheap
 --> greater<int> --> functor / comparator (tells how to place the elements / which comparisons?)
-q.push();
+q.push();		O(logn)
 q.emplace();
-q.top();
-q.pop();
+q.top();		O(1)
+q.pop();		O(logn)
 q.size();
 q.empty();
+
+
+1- Containers - map((key, value), header file= #include<map>)
+map<dtype1, dtype2> m;
+m[key] = value;
+m.insert();
+m.emplace();	// doesn't have to be a pair
+m.count();		// give the count of instances asscociated with given key
+m.erase();
+m.find();		// if found gives iterator of that "" otherwise gives m.end()
+m.size();
+m.empty();
+useful methods:
+for (auto p : m){
+	cout << p.first << " " << p.second << endl;
+}
+- the values will be printed in ascending order of keys (in case of alphabets / strings, it is lexographically sorted in ascending order)
+-
+if (m.find() != m.end()){
+	cout << "found!" << endl;
+}
+
+
+1- Containers - multimap(can store multiple same keys, header file= same as map)
+multimap<dtype1, dtype2> m;
+- can't use m["key"]
+m.erase(m.find("key")) --> removes the first pair with key matching
+
+
+1- Containers - unordered map(random order of pairs, header file= #inlcude<unordered_map>)
+unordered_map<dtype1, dtype2> m;
+
+- useful information:
+- map is based upon self balancing tree so functions have fixed time complexity of O(logn)
+- unordered_map is based upon random order so "on average" we have O(1) but in worst case we have O(n)
+
+1- Containers - set(unique values stored in particular sorted order, header file= #include<set>)
+set<int> s;
+s.insert();
+s.emplace();	// doesn't have to be a pair
+s.count();		// give the count of instances asscociated with given key
+s.erase();
+s.find();		// if found gives iterator of that "" otherwise gives m.end()
+s.size();
+s.empty();
+s.lower_bound(); // s.lower_bound(4); --> either give 4, if not found then give closest minimum to 4
+// gives iterator, we can use dereferncing for printing the value --> *(iterator) if not found then returns s.end();
+s.upper_bound(); // value should be strictly greater than key
+- useful information:
+- set is based upon self balancing tree so functions have fixed time complexity of O(logn)
+
+1- Containers - multiset(header file= same as set)
+multiset<int> s;
+
+
+1- Containers - Unordered Set(header file= #include<unordered_set>, lower and upper bound doesn't work here because these methods only work on sorted data)
+unordered_set<int> s;
+
+---------------------------------------------------
+
+1- Algorithms
+- sorting:
+sort(arr, arr+n); //arr is itself a pointer
+sort(vec.begin(), vec.end());
+
+- sorting in descending order
+sort(arr, arr+n, greater<int>()); // comparator / functor gives the logic of comparison for sorting
+
+- useful method:
+- what if we have vector of pairs?
+vector<pair<int, int>> vec = {{3,1}, {2,1}, {7,1}, {5,2}};
+sort(vec.begin(), vec.end());
+for (auto p : vec){
+	cout << p.first << " " << p.second << endl;
+}
+// sorted based upon pair.first
+
+- what if we want to sort based upon second value?
+- we need to define a custom comparator
+bool custom_comparator (pair<int, int> p1, pair<int, int> p2){
+	if(p1.second < p2.second)	return true;
+	if(p1.second > p2.second)	return false;
+	if(p1.first < p2.first)	return true;
+	else 	return false;
+
+}
+sort(vec.begin(), vec.end(), custom_comparator);
+
+- reverse sorting:
+reverse(v.begin(), v.end())
+
+
+- next permutation:
+next_permutation(v.begin(), v.end())
+
+- previous permutation
+prev_permutation(v.begin(), v.end())
+
+- other methods:
+swap, min, max
+int a = 5, b = 6;
+swap(a, b);
+
+- Max & Min elements
+max_elements(v.begin(), v.end()); // derefernce the iterator to get the value
+min_elements(v.begin(), v.end());
+
+- binary search
+binary_search(v.begin(), v.end(), target);
+
+- count set bits
+__builtin_popcount();		// returns set bits of int
+__builtin_popcountl();		// returns set bits of long int
+__builtin_popcountll();		// returns set bits of long long int
+
