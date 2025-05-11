@@ -1,0 +1,74 @@
+
+✅ Answer: What is Overflow and How to Prevent It
+
+🔍 What is Overflow?
+Overflow occurs when a calculation produces a number outside the range that a data type can store.
+
+In C++, data types like int or long long have fixed sizes, so when a number exceeds the maximum representable value, the behavior depends on the type:
+
+- For signed types (int, long, long long):  
+  → Overflow is undefined behavior (UB). The program may crash, produce incorrect results, or behave inconsistently.
+
+- For unsigned types (unsigned int, uint64_t):  
+  → Overflow wraps around modulo 2^n where n is the bit width.
+
+⚠️ Examples of Overflow
+
+Signed Overflow (Undefined Behavior):
+int x = INT_MAX;
+x = x + 1;  // Undefined behavior — could give a negative value or crash
+
+Unsigned Overflow (Wraps Around):
+unsigned int x = 0;
+x = x - 1;  // Becomes 4294967295 (wraps to UINT_MAX)
+
+🛡️ How to Prevent Overflow
+
+✅ 1. Use Wider Data Types
+If your values are large (e.g., up to 10^9), use long long instead of int:
+long long sum = 0;
+
+✅ 2. Cast Before Arithmetic
+Ensure intermediate calculations use long long:
+int a = 1e9, b = 2;
+long long product = 1LL * a * b;
+
+✅ 3. Check Ranges Before Performing Risky Operations
+For multiplication:
+if (a != 0 && b > LLONG_MAX / a) {
+    // multiplication will overflow
+}
+
+For addition:
+if (a > LLONG_MAX - b) {
+    // addition will overflow
+}
+
+✅ 4. Avoid Unsigned Types for Safety
+Unsigned integers don’t handle underflow safely and wrap around:
+unsigned int x = 3;
+x = x - 5;  // x becomes a huge number (wraparound)
+
+🔎 How to Check the Range of Common Data Types
+
+Use the <climits> and <cstdint> headers:
+#include <iostream>
+#include <climits>    // For int, long, long long
+#include <cstdint>    // For int64_t, uint64_t
+
+int main() {
+    std::cout << "INT_MAX: " << INT_MAX << "\n";
+    std::cout << "LONG_MAX: " << LONG_MAX << "\n";
+    std::cout << "LLONG_MAX: " << LLONG_MAX << "\n";
+    std::cout << "UINT_MAX: " << UINT_MAX << "\n";
+    return 0;
+}
+
+🧠 Summary:
+
+| Type           | Range                            |
+|----------------|----------------------------------|
+| int            | −2,147,483,648 to 2,147,483,647  |
+| long           | Platform-dependent (often same as int on 32-bit, or long long on 64-bit) |
+| long long      | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| unsigned int   | 0 to 4,294,967,295               |

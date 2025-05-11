@@ -7,6 +7,18 @@ it might not be available as it is not the part of STL
 want to use sorting and other algorithms?
 ------- #include<algorithm>
 
+Overflow? ---- it's better to use python when we have problems that require heavy arithmetics, like in tasks_and_deadline.
+#include <iostream>
+#include <climits>    // For int, long, long long
+#include <cstdint>    // For int64_t, uint64_t
+int main() {
+    std::cout << "INT_MAX: " << INT_MAX << "\n";
+    std::cout << "LONG_MAX: " << LONG_MAX << "\n";
+    std::cout << "LLONG_MAX: " << LLONG_MAX << "\n";
+    std::cout << "UINT_MAX: " << UINT_MAX << "\n";
+    return 0;
+}
+
 
 containers, iterators, algorithms, functors
 array vs vectors
