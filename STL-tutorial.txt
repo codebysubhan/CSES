@@ -1,0 +1,140 @@
+containers, iterators, algorithms, functors
+array vs vectors
+1. Containers - Vectors(dynamic arrays, header file= #inlcude<vector>)
+vectors<data_type> vec;
+vec.size();
+vec.capacity();
+vec.push_back();
+vec.pop_back();
+vec.emplace_back();
+vec.at();
+vec[];
+vec.front();
+vec.back();
+vec.erase();		O(n), .erase(start, end), [start, end)
+vec.insert();	O(n), .insert(pos, value)
+vec.clear();
+vec.empty();
+vec.begin();		gives pointer of index 0
+vec.empty();		is the vector empty?
+
+2. Iterators
+vec.begin();		*(vec.begin()); --> gives value at index 0; dereferencing
+vec.end();		*(vec.begin()); --> gives value at index n; not n-1
+vec.rbegin();	
+vec.rend();
+vector<int>::iterator itr; --> gives iterator itr for vector with dtype iterator
+vector<int>::reverse_iterator itr; --> gives iterator itr for vector with dtype iterator
+modern c++ can automatically identify the iterator if we write it like the 2nd method.
+
+method 1:
+vector<int>::iterator itr;
+for (itr = vec.begin(); iter!=vec.end(); itr++){
+	// body
+}
+
+vector<int>::reverse_iterator rtr;
+for (rtr = vec.rbegin(); rtr!=vec.rend(); rtr++){
+	// body
+}
+
+method 2: -- modern c++
+for (auto itr = vec.begin(); iter!=vec.end(); itr++){
+	// body
+}
+
+for (auto rtr = vec.rbegin(); rtr!=vec.rend(); rtr++){
+	// body
+}
+
+useful methods:
+1. Initialize with default values?
+vector<int> vec = vec(9, 10);		// gives a vector with 9 size and 10 on each index
+2. Initialize with another vector values?
+vector<int> vec1 = vec1(vec);
+3. namespace?
+using namespace std;
+4. I/O functions header file?
+#include<iostream>
+
+1- Containers - list(doubly linked list, header file= #inlcude<list>)
+list<data_type> l;
+l.push_back();
+l.push_front();
+l.pop_back();
+l.pop_front();
+l.emplace_back();
+l.emplace_front();
+additional functions:	size, erase, clear, begin, rbegin, end, rend, insert, front, back
+
+1- Containers - deque(double ended queue build on dynamic arrays, header file= #inlcude<deque>)
+deque<data_type> d;
+d[2] --> possible;
+l[2] --> not possible;
+d.push_back();
+d.push_front();
+d.pop_back();
+d.pop_front();
+d.emplace_back();
+d.emplace_front();
+additional functions:	size, erase, clear, begin, rbegin, end, rend, insert, front, back
+
+1- Containers - pair(no header file needed)
+pair<dtype1, dtype2> p;
+p.first; gives first value
+p.second; gives second value
+
+useful methods:
+1. pair<int, pair<int, int>> nested_pair;
+2. vector<pair<int, int>> vec;
+3.
+for (pair<int, int> p : vec){
+	cout << p.first << endl;
+	cout << p.second << endl;
+}
+4.
+for (auto p : vec){
+	cout << p.first << endl;
+	cout << p.second << endl;
+}
+5. vec.push_back({1, 2});
+6. vec.emplace_back(1, 2); --> automatically convert the 2 values into pair
+
+1- Containers - stack(LIFO, header file= #include<stack>)
+stack<int> s;
+s.push();
+s.emplace();
+s.top();
+s.pop();
+s.size();
+s.empty();
+s.swap();	// swap the values of 2 stacks
+
+
+useful methods:
+while(!s.empty()){
+	cout << s.top() << endl;
+	s.pop();
+}
+
+
+1- Containers - queue(FIFO, header file= #include<queue>)
+queue<int> q;
+q.push();
+q.emplace();
+q.front();		// not .top();
+q.pop();
+q.size();
+q.empty();
+q.swap();	swap the values of 2 queues
+
+1- Containers - priority queue(maxheap / minheap / binary heap, header file= same as queue)
+priority_queue<int> q; --> maxheap / default
+priority_queue<int, vector<int>, greater<int>> q; --> minheap
+--> greater<int> --> functor / comparator (tells how to place the elements / which comparisons?)
+q.push();
+q.emplace();
+q.top();
+q.pop();
+q.size();
+q.empty();
