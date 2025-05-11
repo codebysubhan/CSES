@@ -1,0 +1,6 @@
+1. take the input simply in c++
+2. sort both vectors
+3. use 2 pointers approach for each index
+4. maximum apartments could be equal to "m" --> the length of actual size array
+key takeaways:
+start from the basic problem and move up towards the bigger problem.(divide and conquer)

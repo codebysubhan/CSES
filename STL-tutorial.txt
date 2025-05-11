@@ -1,3 +1,13 @@
+Fast I/O? Add these 2 lines in main():
+------- ios::sync_with_stdio(false);
+------- cin.tie(NULL);
+all header files and necessary algos for competitive programming?
+------- #include <bits/stdc++.h>
+it might not be available as it is not the part of STL
+want to use sorting and other algorithms?
+------- #include<algorithm>
+
+
 containers, iterators, algorithms, functors
 array vs vectors
 1. Containers - Vectors(dynamic arrays, header file= #inlcude<vector>)
