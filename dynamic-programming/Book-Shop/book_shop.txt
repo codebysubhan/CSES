@@ -10,4 +10,7 @@ struct pair_hash {
 it didn't work :) so it's better to use map<pair<int, int>, int> and 2D arrays.
 
 try2:
-we can't use map<> due to slower lookups O(logn) so the most convenient option is to use 2D arrays.
+we can't use map<> but it gave TLE due to slower lookups O(logn) so the most convenient option is to use 2D arrays.
+
+try3:
+it worked but had to do a few adjustments in psuedo code... AC

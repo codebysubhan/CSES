@@ -20,6 +20,12 @@ int main() {
 }
 
 
+Q > how to create / initialize 2D array with 0?
+vector<vector<int>> dp(n, vector<int>(m));
+
+Q > why pass " & " in functions?
+so that we can access the actual memory for data manipulation.
+
 containers, iterators, algorithms, functors
 array vs vectors
 1. Containers - Vectors(dynamic arrays, header file= #inlcude<vector>)
