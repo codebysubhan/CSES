@@ -1,0 +1,17 @@
+📌 C++ Input With Spaces — Quick Memo
+
+Use getline() to read a full line (including spaces):
+std::string s;
+std::getline(std::cin, s);
+
+If cin >> was used before getline(), clear buffer:
+std::cin.ignore();
+std::getline(std::cin, s);
+
+To read characters including spaces:
+char c;
+std::cin >> std::noskipws >> c;
+
+For 2D grid with spaces (e.g. n x n):
+std::cin >> std::noskipws >> grid[i][j];
+std::cin.ignore(); // after each row

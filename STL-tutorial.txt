@@ -281,3 +281,37 @@ __builtin_popcount();		// returns set bits of int
 __builtin_popcountl();		// returns set bits of long int
 __builtin_popcountll();		// returns set bits of long long int
 
+
+TIPS:
+Common Type Castings:
+
+Avoiding Integer Overflow:
+int a = 100000, b = 100000;
+long long res = 1LL * a * b;
+
+Character to Integer:
+char d = '9';
+int val = d - '0';  // 9
+
+Integer to Character:
+int val = 7;
+char d = val + '0';  // '7'
+
+Size conversions:
+vector<int> v;
+int n = (int)v.size(); // from size_t to int
+
+int to string:
+int x = 42;
+string s = to_string(x);
+
+TIPS:
+Sets:
+for (int j : s){
+	s.insert(i + j);
+}
+This causes undefined behavior, because you're changing the set while walking through it — it can lead to:
+- Infinite loops
+- Missed combinations
+- Wrong or partial results
+
